@@ -22,6 +22,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <!-- Fitness Goal Label -->
+    <TextView
+        android:id="@+id/"
+        />
+
     <!-- Button: View Progress -->
     <Button
         android:id="@+id/view_progress_button"
