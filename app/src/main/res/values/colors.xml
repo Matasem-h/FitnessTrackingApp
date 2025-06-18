@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="top_toolbar">#77D9ED</color>
     <color name="goal_box">#77EDB2</color>
+    <color name="edit_goal_button">#77D9ED</color>
 </resources>
