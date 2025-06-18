@@ -87,29 +87,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <!--    &lt;!&ndash; Button: Settings &ndash;&gt;-->
-<!--    <Button-->
-<!--        android:id="@+id/settings_button"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="settings"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/view_progress_button"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:layout_marginBottom="24dp"/>-->
-
-<!--    &lt;!&ndash; Floating Action Button: Data Input? &ndash;&gt;-->
-<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--        android:id="@id/fab"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:contentDescription="Add Entry"-->
-<!--        android:src="@drawable/ic_baseline_add_24"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        android:layout_marginBottom="24dp"-->
-<!--        android:layout_marginTop="24dp" />-->
+    <!-- Centered Calendar -->
+    <TextView
+        android:id="@+id/Calendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calendar"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-medium"
+        app:layout_constraintTop_toTopOf="@id/bottom_toolbar"
+        app:layout_constraintBottom_toBottomOf="@id/bottom_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
