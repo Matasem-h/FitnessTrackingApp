@@ -32,13 +32,22 @@
         app:layout_constraintTop_toTopOf="@id/top_toolbar"
         app:layout_constraintBottom_toBottomOf="@id/top_toolbar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Fitness Goal Label -->
     <TextView
-        android:id="@+id/"
-        />
+        android:id="@+id/goal_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fitness Goal"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="32dp"
+        android:fontFamily="sans-serif-medium"
+        app:layout_constraintBottom_toBottomOf="@id/top_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="24dp"/>
+
 
     <!-- Button: View Progress -->
     <Button
