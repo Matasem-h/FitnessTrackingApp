@@ -13,10 +13,11 @@
         android:id="@+id/top_toolbar"
         android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/toolbarColor"
+        android:background="@color/top_toolbar"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:title="Home"
         app:titleTextColor="@android:color/black"
+        app:titleTextAppearance=
         app:navigationIcon="@drawable/ic_menu"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
