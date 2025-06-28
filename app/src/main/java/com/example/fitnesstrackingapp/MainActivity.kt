@@ -9,6 +9,9 @@ import android.widget.Toast
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import java.io.DataInput
+import com.example.fitnesstrackingapp.DataInputActivity
+import com.example.fitnesstrackingapp.ProgressViewActivity
+import com.example.fitnesstrackingapp.SettingsActivity
 
 class MainActivity : AppCompatActivity() {
 
