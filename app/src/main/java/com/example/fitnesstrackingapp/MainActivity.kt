@@ -10,7 +10,6 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import java.io.DataInput
 
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
@@ -42,13 +41,13 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "Home selected", Toast.LENGTH_SHORT).show()
                 }
                 R.id.nav_input -> {
-                    startActivity(intent(this, DataInputActivity::class.java))
+                    startActivity(Intent(this, DataInputActivity::class.java))
                 }
                 R.id.nav_progress -> {
-                    startActivity(intent(this, ProgressViewActivity::class.java))
+                    startActivity(Intent(this, ProgressViewActivity::class.java))
                 }
                 R.id.nav_settings -> {
-                    startActivity(intent(this, SettingsActivity::class.java))
+                    startActivity(Intent(this, SettingsActivity::class.java))
                 }
             }
             drawerLayout.closeDrawers()
