@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import java.io.DataInput
 
 
 class MainActivity : AppCompatActivity() {
@@ -20,8 +21,43 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // You can write your screen logic here
+        drawerLayout = findViewById(R.id.drawer_layout)
+        navView = findViewById(R.id.nav_view)
 
-        
+        // Navigation button setup
+        toggle = ActionBarDrawerToggle(
+            this, drawerLayout, R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
+        )
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        // Placing the navigation button on the action bar
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        // Navigation button functionality
+        navView.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.nav_home -> {
+                    Toast.makeText(this, "Home selected", Toast.LENGTH_SHORT).show()
+                }
+                R.id.nav_input -> {
+                    startActivity(intent(this, DataInputActivity::class.java))
+                }
+                R.id.nav_progress -> {
+                    startActivity(intent(this, ProgressViewActivity::class.java))
+                }
+                R.id.nav_settings -> {
+                    startActivity(intent(this, SettingsActivity::class.java))
+                }
+            }
+            drawerLayout.closeDrawers()
+            true
+        }
+    }
+    // Enable navigation icon response to clicks
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if (toggle.onOptionsItemSelected(item)) true
+        else super.onOptionsItemSelected(item)
     }
 }
