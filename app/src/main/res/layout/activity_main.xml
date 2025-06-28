@@ -26,11 +26,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/nav_view"
-            and
-            />
-
         <!-- Centered Title -->
         <TextView
             android:id="@+id/top_toolbar_title"
@@ -121,5 +116,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/drawer_menu"
-        app:headerLayout="@layout/nav_header" />
+        app:headerLayout="@layout/nav_header"
+        android:background="@android:color/holo_red_light"/>
 </androidx.drawerlayout.widget.DrawerLayout>
