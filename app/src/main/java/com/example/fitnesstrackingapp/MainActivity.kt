@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
 import java.io.DataInput
 import com.example.fitnesstrackingapp.DataInputActivity
 import com.example.fitnesstrackingapp.ProgressViewActivity
@@ -20,9 +21,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var toggle: ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        WindowCompat.setDecorFitsSystemWindows(window, true)
+        window.statusBarColor= ContextCompat.getColor(this, R.color.top_toolbar)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.top_toolbar)
         setSupportActionBar(findViewById(R.id.top_toolbar))
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
