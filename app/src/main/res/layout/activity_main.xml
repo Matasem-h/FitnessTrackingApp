@@ -6,6 +6,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
     <!-- Main content -->
@@ -13,6 +14,7 @@
         android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
         tools:context=".MainActivity">
 
         <!-- Top Toolbar -->
@@ -109,13 +111,12 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Navigation view -->
+    <!-- Navigation View -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/drawer_menu"
-        app:headerLayout="@layout/nav_header"
-        android:background="@android:color/holo_red_light"/>
+        app:headerLayout="@layout/nav_header"/>
 </androidx.drawerlayout.widget.DrawerLayout>
