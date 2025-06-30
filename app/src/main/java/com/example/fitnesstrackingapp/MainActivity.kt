@@ -21,12 +21,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var toggle: ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        WindowCompat.setDecorFitsSystemWindows(window, true)
-        window.statusBarColor= ContextCompat.getColor(this, R.color.top_toolbar)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.top_toolbar))
         supportActionBar?.setDisplayShowTitleEnabled(false)
+        WindowCompat.setDecorFitsSystemWindows(window, true)
+        window.statusBarColor= ContextCompat.getColor(this, R.color.top_toolbar)
 
         drawerLayout = findViewById(R.id.drawer_layout)
         navView = findViewById(R.id.nav_view)
