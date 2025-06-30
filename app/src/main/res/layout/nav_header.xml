@@ -2,19 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
+    android:layout_height="wrap_content"
     android:background="@color/top_toolbar"
     android:paddingStart="25dp"
-    android:paddingTop="25dp"
-    android:gravity="bottom">
+    android:paddingTop="40dp"
+    android:paddingBottom="20dp"
+    android:paddingEnd="25dp"
+    android:gravity="start|center_vertical">
 
     <TextView
         android:id="@+id/nav_header_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Welcome!"
+        android:text="Welcome! You can navigate to your desired page."
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="@android:color/white"
-        android:fontFamily="sans-serif-medium"/>
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@android:color/white" />
 </LinearLayout>
