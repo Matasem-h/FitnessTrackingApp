@@ -6,7 +6,10 @@ import android.os.Bundle
 import android.content.Intent
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import androidx.core.content.ContextCompat
@@ -29,10 +32,25 @@ class MainActivity : AppCompatActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, true)
         window.statusBarColor= ContextCompat.getColor(this, R.color.top_toolbar)
 
+        // Weekly Goal update based on user input
         val editGoalButton = findViewById<Button>(R.id.edit_goal_button)
+        val weeklyGoalText = findViewById<TextView>(R.id.weekly_goal_text)
+
         editGoalButton.setOnClickListener {
-            Toast.makeText(this, "Edit Goal clicked", Toast.LENGTH_SHORT).show()
-            // To show text when edit goal is clicked
+            val inputField = EditText(this)
+            inputField.hint = "Enter your weekly goal"
+
+            AlertDialog.Builder(this)
+                .setTitle("Edit Weekly Goal")
+                .setView(inputField)
+                .setPositiveButton("Save") { _, _ ->
+                    val userInput = inputField.text.toString()
+                    if (userInput.isNotBlank()) {
+                        weeklyGoalText.text = "Weekly Goal: $userInput"
+                    }
+                }
+                    .setNegativeButton("Cancel", null)
+                    .show()
         }
 
         drawerLayout = findViewById(R.id.drawer_layout)
