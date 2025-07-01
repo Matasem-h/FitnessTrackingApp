@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import android.os.Bundle
 import android.content.Intent
 import android.view.MenuItem
+import android.widget.Button
 import android.widget.Toast
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
@@ -27,6 +28,12 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
         WindowCompat.setDecorFitsSystemWindows(window, true)
         window.statusBarColor= ContextCompat.getColor(this, R.color.top_toolbar)
+
+        val editGoalButton = findViewById<Button>(R.id.edit_goal_button)
+        editGoalButton.setOnClickListener {
+            Toast.makeText(this, "Edit Goal clicked", Toast.LENGTH_SHORT).show()
+            // To show text when edit goal is clicked
+        }
 
         drawerLayout = findViewById(R.id.drawer_layout)
         navView = findViewById(R.id.nav_view)
