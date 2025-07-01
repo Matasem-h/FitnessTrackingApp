@@ -22,6 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".DataInputActivity"/>
+        <activity android:name=".ProgressViewActivity"/>
+        <activity android:name=".SettingsActivity"/>
     </application>
 
 </manifest>
