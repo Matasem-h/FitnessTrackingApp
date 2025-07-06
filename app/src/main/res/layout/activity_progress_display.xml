@@ -14,12 +14,12 @@
         android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".SettingsActivity">
+        tools:context=".ProgressViewActivity">
 
         <!-- Top Toolbar -->
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/top_toolbar"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/top_toolbar"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
@@ -60,6 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:fitsSystemWindows="true"
         app:menu="@menu/drawer_menu"
         app:headerLayout="@layout/nav_header"/>
 </androidx.drawerlayout.widget.DrawerLayout>
