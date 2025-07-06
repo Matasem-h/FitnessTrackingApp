@@ -59,18 +59,19 @@
             app:layout_constraintStart_toStartOf="parent"/>
 
         <!-- Input Field -->
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/exercise_input"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
             android:layout_marginTop="8dp"
-            android:hint="e.g. Walking"
+            android:hint="Choose or type exercise"
             android:background="@android:color/darker_gray"
             android:padding="10dp"
             android:textColor="@android:color/black"
             android:textSize="16sp"
+            android:inputType="text"
             app:layout_constraintTop_toBottomOf="@id/exercise_label"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
