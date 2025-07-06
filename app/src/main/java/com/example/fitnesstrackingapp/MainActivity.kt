@@ -14,7 +14,6 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
-import android.widget.AutoCompleteTextView
 
 import java.io.DataInput
 
