@@ -58,7 +58,7 @@
             app:layout_constraintTop_toBottomOf="@id/top_toolbar"
             app:layout_constraintStart_toStartOf="parent"/>
 
-        <!-- Input Field -->
+        <!-- Input Field: Exercise -->
         <AutoCompleteTextView
             android:id="@+id/exercise_input"
             android:layout_width="match_parent"
@@ -91,6 +91,23 @@
             app:layout_constraintTop_toBottomOf="@id/exercise_input"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <!-- Input Field: Duration or Sets -->
+        <EditText
+            android:id="@+id/duration_input"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="8dp"
+            android:hint="e.g. 1:00h walk or 20 push-ups"
+            android:background="@android:color/darker_gray"
+            android:padding="10dp"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:inputType="text"
+            app:layout_constraintTop_toBottomOf="@id/duration_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>                
 
 
 
