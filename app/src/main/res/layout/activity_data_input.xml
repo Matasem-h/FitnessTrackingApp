@@ -91,7 +91,7 @@
             app:layout_constraintTop_toBottomOf="@id/exercise_input"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <!-- Input Field: Duration or Sets -->
+        <!-- Input Field: Duration or Number of Sets -->
         <EditText
             android:id="@+id/duration_input"
             android:layout_width="match_parent"
@@ -109,16 +109,39 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
+        <!-- Label: Date -->
+        <TextView
+            android:id="@+id/date_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="25dp"
+            android:text="Date:"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+            android:textColor="@android:color/black"
+            app:layout_constraintTop_toBottomOf="@id/duration_input"
+            app:layout_constraintStart_toStartOf="parent" />
 
-
-
-
-
-
-
-
-
-
+        <!-- Input Field: Date -->
+        <EditText
+            android:id="@+id/date_input"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="8dp"
+            android:hint="Select a Date"
+            android:focusable="false"
+            android:clickable="true"
+            android:background="@android:color/darker_gray"
+            android:padding="10dp"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/date_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
