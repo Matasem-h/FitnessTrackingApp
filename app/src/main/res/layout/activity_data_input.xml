@@ -76,6 +76,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
+        <!-- Label: Duration or Sets -->
+        <TextView
+            android:id="@+id/duration_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="25dp"
+            android:text="Duration or Number of Sets:"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+            android:textColor="@android:color/black"
+            app:layout_constraintTop_toBottomOf="@id/exercise_input"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
 
 
 
