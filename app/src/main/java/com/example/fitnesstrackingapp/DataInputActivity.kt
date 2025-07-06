@@ -11,6 +11,10 @@ class DataInputActivity : AppCompatActivity() {
         setContentView(R.layout.activity_data_input)
 
         val exerciseInput = findViewById<AutoCompleteTextView>(R.id.exercise_input)
-        
+
+        val exercises = listOf("Walking", "Swimming", "Cycling", "Push-Ups", "Sit-Ups")
+        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, exercises)
+
+        exerciseInput.setAdapter(adapter)
     }
 }
