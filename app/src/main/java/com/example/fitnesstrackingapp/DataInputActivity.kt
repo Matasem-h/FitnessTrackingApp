@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.Toast
 import java.time.Year
 import java.util.*
+import android.content.Intent
 
 class DataInputActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +58,9 @@ class DataInputActivity : AppCompatActivity() {
         }
 
         // Setup for Exercise History Button
-
-
+        val historyButton = findViewById<Button>(R.id.exercise_history_button)
+        historyButton.setOnClickListener {
+            startActivity(Intent(this, ProgressViewActivity::class.java))
+        }
     }
 }
