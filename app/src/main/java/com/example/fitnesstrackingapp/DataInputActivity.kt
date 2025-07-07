@@ -7,6 +7,8 @@ import android.widget.ArrayAdapter
 
 import android.widget.EditText
 import android.app.DatePickerDialog
+import android.widget.Button
+import android.widget.Toast
 import java.time.Year
 import java.util.*
 
@@ -38,5 +40,24 @@ class DataInputActivity : AppCompatActivity() {
 
             datePickerDialog.show()
         }
+
+        // Setup for Submit Button
+        val submitButton = findViewById<Button>(R.id.submit_button)
+        submitButton.setOnClickListener {
+            val exercise = exerciseInput.text.toString()
+            val date = findViewById<EditText>(R.id.date_input).text.toString()
+            val details = findViewById<EditText>(R.id.duration_input).text.toString()
+
+            if (exercise.isNotBlank() && date.isNotBlank() && details.isNotBlank()) {
+                // Save the data below here
+                Toast.makeText(this, "Exercise logged for $date", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // Setup for Exercise History Button
+
+
     }
 }
