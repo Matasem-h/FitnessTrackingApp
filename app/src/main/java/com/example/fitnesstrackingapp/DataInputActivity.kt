@@ -14,9 +14,14 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
-
 import java.time.Year
 
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+
+import data.DatabaseProvider
+import data.ExerciseEntry
 
 class DataInputActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
@@ -92,12 +97,17 @@ class DataInputActivity : AppCompatActivity() {
         val submitButton = findViewById<Button>(R.id.submit_button)
         submitButton.setOnClickListener {
             val exercise = exerciseInput.text.toString()
+            val duration = findViewById<EditText>(R.id.duration_input).text.toString()
             val date = dateInput.text.toString()
-            val details = findViewById<EditText>(R.id.duration_input).text.toString()
 
-            if (exercise.isNotBlank() && date.isNotBlank() && details.isNotBlank()) {
+            if (exercise.isNotBlank() && duration.isNotBlank() && date.isNotBlank()) {
                 // Save the data below here
-                Toast.makeText(this, "Exercise logged for $date", Toast.LENGTH_SHORT).show()
+                val entry = ExerciseEntry(name = exercise, durationOrSets = duration, date = date)
+
+                CoroutineScope(Dispatchers.IO).launch {
+                    val db = DatabaseProvider.getDatabase(applicationContext)
+                }
+                Toast.makeText(this, "Exercise Saved!", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
             }
