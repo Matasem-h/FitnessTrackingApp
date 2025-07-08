@@ -76,32 +76,19 @@
                 android:orientation="horizontal">
 
                 <!-- Month Name -->
-                
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="48dp"
+                    android:gravity="center"
+                    android:text="Jul"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:background="@android:color/transparent"
+                    android:layout_margin="2dp"/>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            </LinearLayout>
         </LinearLayout>
 
 
