@@ -7,14 +7,14 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import android.view.MenuItem
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 
-import android.widget.AutoCompleteTextView
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.app.DatePickerDialog
-import android.widget.Button
-import android.widget.Toast
-import java.util.*
+import data.DatabaseProvider
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ProgressViewActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
@@ -63,40 +63,19 @@ class ProgressViewActivity : AppCompatActivity() {
         }
 
         // Page-Specific Code
+        CoroutineScope(Dispatchers.IO).launch {
+            val db = DatabaseProvider.getDatabase(applicationContext)
+            val entries = db.exerciseDao().getAllExercises()
+            val datesWithEntries = entries.map {it.date}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            withContext(Dispatchers.Main) {
+                datesWithEntries.forEach() { dateStr ->
+                    val viewId = resources.getIdentifier("square_${dateStr.replace("-", "_")}", "id", packageName)
+                    val square = findViewById<TextView>(viewId)
+                    square?.setBackgroundColor(ContextCompat.getColor(this@ProgressViewActivity, R.color.goal_box))
+                }
+            }
+        }
     }
 
     // Enable navigation icon response to clicks
