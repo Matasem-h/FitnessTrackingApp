@@ -57,6 +57,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
+        <!-- Container -->
         <LinearLayout
             android:id="@+id/week_grid_container"
             android:layout_width="match_parent"
@@ -87,93 +88,80 @@
                     android:background="@android:color/transparent"
                     android:layout_margin="2dp"/>
 
-
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Mon"
+                    android:background="@android:color/darker_gray"
+                    android:textColor="@android:color/black"
+                    android:layout_margin="2dp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Tue"
+                    android:background="@android:color/darker_gray"
+                    android:textColor="@android:color/black"
+                    android:layout_margin="2dp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Wed"
+                    android:background="@android:color/darker_gray"
+                    android:textColor="@android:color/black"
+                    android:layout_margin="2dp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Thu"
+                    android:background="@android:color/darker_gray"
+                    android:textColor="@android:color/black"
+                    android:layout_margin="2dp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Mon"
+                    android:background="@android:color/darker_gray"
+                    android:textColor="@android:color/black"
+                    android:layout_margin="2dp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Fri"
+                    android:background="@android:color/darker_gray"
+                    android:textColor="@android:color/black"
+                    android:layout_margin="2dp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Sat"
+                    android:background="@android:color/darker_gray"
+                    android:textColor="@android:color/black"
+                    android:layout_margin="2dp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Sun"
+                    android:background="@android:color/darker_gray"
+                    android:textColor="@android:color/black"
+                    android:layout_margin="2dp"/>
             </LinearLayout>
         </LinearLayout>
-
-
-
-
-
-
-
-
-
-
-
-
-<!--                    <TextView
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Mon"
-                android:background="@android:color/darker_gray"
-                android:textColor="@android:color/black"
-                android:layout_margin="2dp"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Mon"
-                android:background="@android:color/darker_gray"
-                android:textColor="@android:color/black"
-                android:layout_margin="2dp"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Mon"
-                android:background="@android:color/darker_gray"
-                android:textColor="@android:color/black"
-                android:layout_margin="2dp"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Mon"
-                android:background="@android:color/darker_gray"
-                android:textColor="@android:color/black"
-                android:layout_margin="2dp"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Mon"
-                android:background="@android:color/darker_gray"
-                android:textColor="@android:color/black"
-                android:layout_margin="2dp"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Mon"
-                android:background="@android:color/darker_gray"
-                android:textColor="@android:color/black"
-                android:layout_margin="2dp"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Mon"
-                android:background="@android:color/darker_gray"
-                android:textColor="@android:color/black"
-                android:layout_margin="2dp"/>-->
-
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Navigation view -->
