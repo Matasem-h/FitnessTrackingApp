@@ -86,7 +86,7 @@ class DataInputActivity : AppCompatActivity() {
 
             val datePickerDialog = DatePickerDialog(this,
                 { _, selectedYear, selectedMonth, selectedDay ->
-                    val formatted = "${selectedDay}/${selectedMonth + 1}/${selectedYear}"
+                    val formatted = String.format("%04d-%02d-%02d", selectedYear, selectedMonth + 1, selectedDay)
                     dateInput.setText(formatted)
                 },
                 year, month, day)
