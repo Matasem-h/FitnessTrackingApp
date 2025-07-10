@@ -51,6 +51,9 @@ dependencies {
     implementation("androidx.room:room-runtime:2.7.2")
     kapt("androidx.room:room-compiler:2.7.2")
 
+    // Added for Progress View squares
+    implementation("com.jakewharton.threetenabp:threetenabp:1.4.5")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

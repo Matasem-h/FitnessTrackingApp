@@ -120,11 +120,7 @@ class ProgressViewActivity : AppCompatActivity() {
             withContext(Dispatchers.Main) {
                 datesWithEntries.forEach() { dateStr ->
 
-
-                    val viewId = resources.getIdentifier("square_${dateStr.replace("-", "_")}", "id", packageName)
-                    val square = findViewById<TextView>(viewId)
-
-
+                    val square = container.findViewWithTag<TextView>("square_${dateStr.replace("-","_")}")
 
                     square?.setBackgroundColor(ContextCompat.getColor(this@ProgressViewActivity, R.color.goal_box))
                 }
