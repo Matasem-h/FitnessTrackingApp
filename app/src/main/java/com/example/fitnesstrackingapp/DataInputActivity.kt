@@ -22,6 +22,7 @@ import kotlinx.coroutines.launch
 
 import data.DatabaseProvider
 import data.ExerciseEntry
+import kotlinx.coroutines.withContext
 
 class DataInputActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
@@ -96,6 +97,7 @@ class DataInputActivity : AppCompatActivity() {
         // Setup for Submit Button
         val submitButton = findViewById<Button>(R.id.submit_button)
         submitButton.setOnClickListener {
+
             val exercise = exerciseInput.text.toString()
             val duration = findViewById<EditText>(R.id.duration_input).text.toString()
             val date = dateInput.text.toString()
@@ -106,7 +108,10 @@ class DataInputActivity : AppCompatActivity() {
 
                 CoroutineScope(Dispatchers.IO).launch {
                     val db = DatabaseProvider.getDatabase(applicationContext)
+                    db.exerciseDao().insertExercise(entry) // Changes color of day square
                 }
+
+                // Show "Toast" meaning confirmation message on UI when submit button is pressed
                 Toast.makeText(this, "Exercise Saved!", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()

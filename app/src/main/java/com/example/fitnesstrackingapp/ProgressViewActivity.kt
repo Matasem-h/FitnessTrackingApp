@@ -21,8 +21,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.threeten.bp.LocalDate
-import org.w3c.dom.Text
 
+//import org.w3c.dom.Text
 //import org.w3c.dom.Text
 //import java.time.LocalDate
 
@@ -132,19 +132,6 @@ class ProgressViewActivity : AppCompatActivity() {
                 weekLayout.addView(textView)
                 textViewMap[current.toString()] = textView.id
                 current = current.plusDays(1)
-            }
-
-            // Fill remaining days in last row with invisible placeholders
-            val placeholdersNeeded = 7 - (weekLayout.childCount - 1) // subtract month label
-            for (i in 1..placeholdersNeeded) {
-                val placeholder = TextView(this).apply {
-                    layoutParams = LinearLayout.LayoutParams(0, 48).apply {
-                        weight = 1f
-                        setMargins(4, 4, 4, 4)
-                    }
-                    visibility = View.INVISIBLE
-                }
-                weekLayout.addView(placeholder)
             }
 
             container.addView(weekLayout)
