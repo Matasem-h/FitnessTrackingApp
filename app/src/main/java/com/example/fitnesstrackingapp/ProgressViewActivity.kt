@@ -19,9 +19,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.w3c.dom.Text
+import org.threeten.bp.LocalDate
 
-import java.time.LocalDate
+//import org.w3c.dom.Text
+//import java.time.LocalDate
+
 
 class ProgressViewActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
