@@ -161,6 +161,15 @@
                     android:textColor="@android:color/black"
                     android:layout_margin="2dp"/>
             </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Legend: ● Low ● Medium ● High"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:layout_gravity="center_horizontal"/>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
