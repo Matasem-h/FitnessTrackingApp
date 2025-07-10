@@ -87,6 +87,29 @@ class ProgressViewActivity : AppCompatActivity() {
                 gravity = Gravity.CENTER
                 setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
             }
+            weekLayout.addView(monthsLabel)
+            for(j in 0..6) {
+                val date = startOfWeek.minusDays(j.toLong())
+                val squareId = "square_${date.toString().replace("-", "_")}"
+                val textView = TextView(this).apply {
+                    layoutParams = LinearLayout.LayoutParams(0, 48).apply {
+                        weight = 1f
+                        setMargins(4,4,4,4)
+                    }
+                    gravity = Gravity.CENTER
+                    text = "" // Optional Show Day number
+                    setBackgroundColor(Color.LTGRAY)
+                    id = View.generateViewId()
+                    tag = squareId // Store data key as tag
+                }
+                // Save mapping: id -> date for later (Optional)
+                weekLayout.addView(textView)
+                // Store generated view ID for lookup
+                textViewMap[date.toString()] = textView.id
+            }
+
+            container.addView(weekLayout)
+        }
 
         // Coroutine part?
         CoroutineScope(Dispatchers.IO).launch {
