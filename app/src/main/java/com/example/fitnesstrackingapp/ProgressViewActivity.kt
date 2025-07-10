@@ -29,6 +29,7 @@ class ProgressViewActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
     private lateinit var toggle: ActionBarDrawerToggle
+    private val textViewMap = mutableMapOf<String, Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,7 +100,7 @@ class ProgressViewActivity : AppCompatActivity() {
                         setMargins(4,4,4,4)
                     }
                     gravity = Gravity.CENTER
-                    text = "" // Optional Show Day number
+                    text = date.dayOfMonth.toString() // Optional Show Day number
                     setBackgroundColor(Color.LTGRAY)
                     id = View.generateViewId()
                     tag = squareId // Store data key as tag
