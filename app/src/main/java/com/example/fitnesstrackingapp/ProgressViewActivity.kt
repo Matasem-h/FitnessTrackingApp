@@ -79,19 +79,34 @@ class ProgressViewActivity : AppCompatActivity() {
         val container = findViewById<LinearLayout>(R.id.week_grid_container)
         val today = LocalDate.now()
         val startDate = LocalDate.of(today.year, 6, 1) // June 1st
-        var current = startDate
-        var weekLayout = LinearLayout(this).apply {
-            orientation = LinearLayout.HORIZONTAL
-        }
 
+        var current = startDate
+
+        var currentMonth = ""
+
+//        var weekLayout = LinearLayout(this).apply {
+//            orientation = LinearLayout.HORIZONTAL
+//        }
+
+        fun getDaySuffix(day: Int): String {
+            return when {
+                day in 11..13 -> "${day}th"
+                day % 10 == 1 -> "${day}st"
+                day % 10 == 2 -> "${day}nd"
+                day % 10 == 3 -> "${day}rd"
+                else -> "${day}th"
+            }
+        }
+        
         while (!current.isAfter(today)) {
             // Start a new week row every 7 days
             if ((current.dayOfWeek.value % 7) == 1 && weekLayout.childCount > 0) {
                 container.addView(weekLayout)
                 weekLayout = LinearLayout(this).apply {
-                    orientation = LinearLayout.VERTICAL
+                    orientation = LinearLayout.HORIZONTAL
                 }
             }
+
 
             val squareId = "square_${current.toString().replace("-", "_")}"
             val textView = TextView(this).apply {
@@ -114,13 +129,16 @@ class ProgressViewActivity : AppCompatActivity() {
             current = current.plusDays(1)
         }
 
-        // Add the last partial week if needed
+// Add the last partial week if needed
         if (weekLayout.childCount > 0) {
             container.addView(weekLayout)
         }
 
 
 
+
+//        ---- Old loop ----
+//
 //        val container = findViewById<LinearLayout>(R.id.week_grid_container)
 //        val today = LocalDate.now()
 //
