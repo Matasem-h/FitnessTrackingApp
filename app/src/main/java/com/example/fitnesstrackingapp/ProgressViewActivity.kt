@@ -119,16 +119,26 @@ class ProgressViewActivity : AppCompatActivity() {
             val db = DatabaseProvider.getDatabase(applicationContext)
             val entries = db.exerciseDao().getAllExercises()
             val datesWithEntries = entries.map {it.date}
+            val dateGrouped = entries.groupBy { it.date }
 
             withContext(Dispatchers.Main) {
-                datesWithEntries.forEach() { dateStr ->
+                dateGrouped.forEach() { (dateStr, list) ->
 
                     val square = container.findViewWithTag<TextView>("square_${dateStr.replace("-","_")}")
+                    square?.let {
+                        val count = list.size
+                        val colorRes = when {
+                            count >= 5 -> R.color.goal_box_high
+                            count >= 3 -> R.color.goal_box_medium
+                            else -> R.color.goal_box_light
+                        }
+                    }
 
-                    square?.setBackgroundColor(ContextCompat.getColor(this@ProgressViewActivity, R.color.goal_box))
+                    square?.setBackgroundColor(ContextCompat.getColor(this@ProgressViewActivity, colorRes))
                 }
             }
         }
+
     }
 
     // Enable navigation icon response to clicks

@@ -5,4 +5,7 @@
     <color name="top_toolbar">#77D9ED</color>
     <color name="goal_box">#77EDB2</color>
     <color name="edit_goal_button">#77D9ED</color>
+    <color name="goal_box_light">#B2DFDB</color>
+    <color name="goal_box_medium">#4DB6AC</color>
+    <color name="goal_box_high">#00796B</color>
 </resources>
