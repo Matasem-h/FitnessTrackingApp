@@ -21,6 +21,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.threeten.bp.LocalDate
+import org.w3c.dom.Text
 
 //import org.w3c.dom.Text
 //import java.time.LocalDate
@@ -78,15 +79,10 @@ class ProgressViewActivity : AppCompatActivity() {
         // Loop for generating squares with date IDs
         val container = findViewById<LinearLayout>(R.id.week_grid_container)
         val today = LocalDate.now()
-        val startDate = LocalDate.of(today.year, 6, 1) // June 1st
-
+        val startDate = LocalDate.of(today.year, 6, 1)
         var current = startDate
 
         var currentMonth = ""
-
-//        var weekLayout = LinearLayout(this).apply {
-//            orientation = LinearLayout.HORIZONTAL
-//        }
 
         fun getDaySuffix(day: Int): String {
             return when {
@@ -97,93 +93,62 @@ class ProgressViewActivity : AppCompatActivity() {
                 else -> "${day}th"
             }
         }
-        
+
         while (!current.isAfter(today)) {
-            // Start a new week row every 7 days
-            if ((current.dayOfWeek.value % 7) == 1 && weekLayout.childCount > 0) {
-                container.addView(weekLayout)
-                weekLayout = LinearLayout(this).apply {
-                    orientation = LinearLayout.HORIZONTAL
-                }
+            // Start new week row
+            val weekLayout = LinearLayout(this).apply {
+                orientation = LinearLayout.HORIZONTAL
             }
 
-
-            val squareId = "square_${current.toString().replace("-", "_")}"
-            val textView = TextView(this).apply {
-                layoutParams = LinearLayout.LayoutParams(0, 48).apply {
-                    weight = 1f
-                    setMargins(4, 4, 4, 4)
-                }
+            // Add month label only once per row (left column)
+            val monthLabel = TextView(this).apply {
+                text = current.month.toString().lowercase().replaceFirstChar { it.uppercase() }.take(3)
+                width = 60 // Changed from 40
+                height = 48
                 gravity = Gravity.CENTER
-                text = current.dayOfMonth.toString()
-                setBackgroundColor(Color.LTGRAY)
-                id = View.generateViewId()
-                tag = squareId
-                setOnClickListener {
-                    Toast.makeText(this@ProgressViewActivity, "Selected date: $current", Toast.LENGTH_SHORT).show()
+                setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
+            }
+            weekLayout.addView(monthLabel)
+
+            for (i in 0..6) {
+                if (current.isAfter(today)) break
+
+                val squareId = "square_${current.toString().replace("-", "_")}"
+                val textView = TextView(this).apply {
+                    layoutParams = LinearLayout.LayoutParams(0, 48).apply {
+                        weight = 1f
+                        setMargins(4, 4, 4, 4)
+                    }
+                    gravity = Gravity.CENTER
+                    text = getDaySuffix(current.dayOfMonth)
+                    setBackgroundColor(Color.LTGRAY)
+                    id = View.generateViewId()
+                    tag = squareId
+                    setOnClickListener {
+                        Toast.makeText(this@ProgressViewActivity, "Selected date: $current", Toast.LENGTH_SHORT).show()
+                    }
                 }
+
+                weekLayout.addView(textView)
+                textViewMap[current.toString()] = textView.id
+                current = current.plusDays(1)
             }
 
-            weekLayout.addView(textView)
-            textViewMap[current.toString()] = textView.id
-            current = current.plusDays(1)
-        }
+            // Fill remaining days in last row with invisible placeholders
+            val placeholdersNeeded = 7 - (weekLayout.childCount - 1) // subtract month label
+            for (i in 1..placeholdersNeeded) {
+                val placeholder = TextView(this).apply {
+                    layoutParams = LinearLayout.LayoutParams(0, 48).apply {
+                        weight = 1f
+                        setMargins(4, 4, 4, 4)
+                    }
+                    visibility = View.INVISIBLE
+                }
+                weekLayout.addView(placeholder)
+            }
 
-// Add the last partial week if needed
-        if (weekLayout.childCount > 0) {
             container.addView(weekLayout)
         }
-
-
-
-
-//        ---- Old loop ----
-//
-//        val container = findViewById<LinearLayout>(R.id.week_grid_container)
-//        val today = LocalDate.now()
-//
-//        for (i in 0 until 56 step 7) {
-//            val weekLayout = LinearLayout(this).apply {
-//                orientation = LinearLayout.HORIZONTAL
-//            }
-//
-//            val startOfWeek = today.minusDays(i.toLong())
-//            val monthsLabel = TextView(this).apply {
-//                text = startOfWeek.month.name.take(3)
-//                width = 40
-//                height = 48
-//                gravity = Gravity.CENTER
-//                setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
-//            }
-//            weekLayout.addView(monthsLabel)
-//            for(j in 0..6) {
-//                val date = startOfWeek.minusDays(j.toLong())
-//                if (date.isAfter(today)) continue
-//                val squareId = "square_${date.toString().replace("-", "_")}"
-//                val textView = TextView(this).apply {
-//                    layoutParams = LinearLayout.LayoutParams(0, 48).apply {
-//                        weight = 1f
-//                        setMargins(4,4,4,4)
-//                    }
-//                    gravity = Gravity.CENTER
-//                    text = date.dayOfMonth.toString() // Optional Show Day number
-//                    setBackgroundColor(Color.LTGRAY)
-//                    id = View.generateViewId()
-//                    tag = squareId // Store data key as tag
-//                    // Adding click events for each square.
-//                    setOnClickListener {
-//                        Toast.makeText(this@ProgressViewActivity, "Selected date: $date", Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//                // Save mapping: id -> date for later (Optional)
-//                weekLayout.addView(textView)
-//                // Store generated view ID for lookup
-//                textViewMap[date.toString()] = textView.id
-//            }
-//
-//            container.addView(weekLayout)
-//        }
-
 
 
         // Coroutine part
