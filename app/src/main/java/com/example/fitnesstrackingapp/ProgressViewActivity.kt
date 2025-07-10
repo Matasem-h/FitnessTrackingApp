@@ -134,13 +134,12 @@ class ProgressViewActivity : AppCompatActivity() {
                     square?.let {
                         val count = list.size
                         val colorRes = when {
-                            count >= 5 -> R.color.goal_box_high
-                            count >= 3 -> R.color.goal_box_medium
+                            count >= 15 -> R.color.goal_box_high
+                            count >= 10 -> R.color.goal_box_medium
                             else -> R.color.goal_box_light
                         }
+                        square.setBackgroundColor(ContextCompat.getColor(this@ProgressViewActivity, colorRes))
                     }
-
-                    square?.setBackgroundColor(ContextCompat.getColor(this@ProgressViewActivity, colorRes))
                 }
             }
         }
