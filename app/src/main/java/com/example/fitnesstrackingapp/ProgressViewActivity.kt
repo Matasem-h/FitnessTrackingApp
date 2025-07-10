@@ -13,6 +13,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import data.DatabaseProvider
 import kotlinx.coroutines.CoroutineScope
@@ -93,6 +94,7 @@ class ProgressViewActivity : AppCompatActivity() {
             weekLayout.addView(monthsLabel)
             for(j in 0..6) {
                 val date = startOfWeek.minusDays(j.toLong())
+                if (date.isAfter(today)) continue
                 val squareId = "square_${date.toString().replace("-", "_")}"
                 val textView = TextView(this).apply {
                     layoutParams = LinearLayout.LayoutParams(0, 48).apply {
@@ -104,6 +106,10 @@ class ProgressViewActivity : AppCompatActivity() {
                     setBackgroundColor(Color.LTGRAY)
                     id = View.generateViewId()
                     tag = squareId // Store data key as tag
+                    // Adding click events for each square.
+                    setOnClickListener {
+                        Toast.makeText(this@ProgressViewActivity, "Selected date: $date", Toast.LENGTH_SHORT).show()
+                    }
                 }
                 // Save mapping: id -> date for later (Optional)
                 weekLayout.addView(textView)
@@ -114,7 +120,7 @@ class ProgressViewActivity : AppCompatActivity() {
             container.addView(weekLayout)
         }
 
-        // Coroutine part?
+        // Coroutine part
         CoroutineScope(Dispatchers.IO).launch {
             val db = DatabaseProvider.getDatabase(applicationContext)
             val entries = db.exerciseDao().getAllExercises()
@@ -138,7 +144,6 @@ class ProgressViewActivity : AppCompatActivity() {
                 }
             }
         }
-
     }
 
     // Enable navigation icon response to clicks
