@@ -124,8 +124,9 @@ class ProgressViewActivity : AppCompatActivity() {
                     setBackgroundColor(Color.LTGRAY)
                     id = View.generateViewId()
                     tag = squareId
+                    val capturedDate = current
                     setOnClickListener {
-                        Toast.makeText(this@ProgressViewActivity, "Selected date: $current", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@ProgressViewActivity, "Selected date: $capturedDate", Toast.LENGTH_SHORT).show()
                     }
                 }
 
