@@ -169,6 +169,22 @@
             app:layout_constraintTop_toBottomOf="@id/past_7_days_label"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
+
+        <Button
+            android:id="@+id/show_more_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center_horizontal"
+            android:text="... Show more"
+            android:textColor="@android:color/black"
+            android:background="@android:color/transparent"
+            android:textStyle="italic"
+            app:layout_constraintTop_toBottomOf="@id/calendar_square_container"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Navigation view -->

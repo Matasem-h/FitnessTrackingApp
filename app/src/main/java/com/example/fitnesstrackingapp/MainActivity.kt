@@ -136,7 +136,12 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
+        
+        // Show more button functionality
+        val showMoreButton = findViewById<Button>(R.id.show_more_button)
+        showMoreButton.setOnClickListener {
+            startActivity(Intent(this, ProgressViewActivity::class.java))
+        }
     }
     // Simple logic for day coloring
     private fun getWeightedValue(entry: data.ExerciseEntry): Int {
