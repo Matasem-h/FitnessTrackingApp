@@ -92,6 +92,35 @@ class MainActivity : AppCompatActivity() {
                 .show()
         }
 
+        // Calendar past 7 days
+        val calendarRow = findViewById<LinearLayout>(R.id.homepage_calendar_days)
+        val today = LocalDate.now()
+
+        fun getDaySuffix (day: Int): String {
+            return when{
+                day in 11..13 -> "${day}th"
+                day % 10 == 1 -> "${day}st"
+                day % 10 == 2 -> "${day}nd"
+                day % 10 == 3 -> "${day}rd"
+                else -> "${day}th"
+            }
+        }
+
+        for (i in 6 downTo 0) {
+            val date = today.minusDays(i.toLong())
+            val textView = TextView(this).apply {
+                layoutParams = LinearLayout.LayoutParams(0, 48).apply {
+                    weight = 1f
+                    setMargins(4, 4, 4, 4)
+                }
+                gravity = Gravity.CENTER
+                text = getDaySuffix(date.dayOfMonth)
+                setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
+                setBackgroundColor(Color.LTGRAY)
+            }
+            calendarRow.addView(textView)
+        }
+
 
 
 
