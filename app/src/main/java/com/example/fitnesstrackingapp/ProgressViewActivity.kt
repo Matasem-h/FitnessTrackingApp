@@ -165,17 +165,28 @@ class ProgressViewActivity : AppCompatActivity() {
                     val square = container.findViewWithTag<TextView>("square_${dateStr.replace("-","_")}")
                     square?.let {
                         val totalAmount = list.sumOf {
-                            it.durationOrSets.toIntOrNull() ?:0
+                            getWeightedValue(it)
                         }
                         val colorRes = when {
-                            totalAmount >= 15 -> R.color.goal_box_high
-                            totalAmount >= 10 -> R.color.goal_box_medium
+                            totalAmount >= 25 -> R.color.goal_box_high
+                            totalAmount >= 15 -> R.color.goal_box_medium
                             else -> R.color.goal_box_light
                         }
                         square.setBackgroundColor(ContextCompat.getColor(this@ProgressViewActivity, colorRes))
                     }
                 }
             }
+        }
+    }
+
+    // Simple logic for day coloring
+    private fun getWeightedValue(entry: data.ExerciseEntry): Int {
+        val base = entry.durationOrSets.toIntOrNull() ?: 0
+        return when (entry.name.lowercase()) {
+            "push-ups", "sit-ups" -> base * 1         // Reps
+            "walking", "cycling" -> base / 5          // Minutes
+            "swimming" -> base / 5                     // Swimming is more intense
+            else -> base
         }
     }
 
