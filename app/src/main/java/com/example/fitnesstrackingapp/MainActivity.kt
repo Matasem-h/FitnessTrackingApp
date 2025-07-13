@@ -99,16 +99,16 @@ class MainActivity : AppCompatActivity() {
                 .setView(inputField)
                 .setPositiveButton("Save") { _, _ ->
                     val userInput = inputField.text.toString().toIntOrNull()
-                    if (userInput in 1..7) {
-                        // Save the goal
-                        val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
-                        prefs.edit().putInt(WEEKLY_GOAL_KEY, userInput).apply()
+                    userInput?.let {
+                        if (it in 1..7) {
+                            val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                            prefs.edit().putInt(WEEKLY_GOAL_KEY, it).apply()
+                            weeklyGoalText.text = "Weekly Goal: $it"
+                        } else {
+                            Toast.makeText(this, "Please enter a number from 1 to 7", Toast.LENGTH_SHORT).show()
+                        }
+                    } ?: Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show()
 
-                        // Update display
-                        weeklyGoalText.text = "Weekly Goal: $userInput"
-                    } else {
-                        Toast.makeText(this, "Please enter a number from 1 to 7", Toast.LENGTH_SHORT).show()
-                    }
                 }
                 .setNegativeButton("Cancel", null)
                 .show()
