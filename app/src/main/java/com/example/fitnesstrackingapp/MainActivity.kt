@@ -31,9 +31,14 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
+    // Navigation button variables
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
     private lateinit var toggle: ActionBarDrawerToggle
+
+    // Set weekly goals button variables
+    private val PREFS_NAME = "FitnessAppsPrefs"
+    private val WEEKLY_GOAL_KEY = "weekly_goal_number"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,19 +83,31 @@ class MainActivity : AppCompatActivity() {
         // Weekly Goal update based on user input
         val editGoalButton = findViewById<Button>(R.id.edit_goal_button)
         val weeklyGoalText = findViewById<TextView>(R.id.weekly_goal_text)
+        val savedGoal = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).getInt(WEEKLY_GOAL_KEY, 0)
+        if (savedGoal in 1..7){
+            weeklyGoalText.text = "Weekly Goal: $savedGoal"
+        }
+
 
         // Edit Goal Button Setup
         editGoalButton.setOnClickListener {
             val inputField = EditText(this)
-            inputField.hint = "Enter your weekly goal"
+            inputField.hint = "Enter a number from 1 to 7"
 
             AlertDialog.Builder(this)
-                .setTitle("Edit Weekly Goal")
+                .setTitle("How many times do you want to workout a week?")
                 .setView(inputField)
                 .setPositiveButton("Save") { _, _ ->
-                    val userInput = inputField.text.toString()
-                    if (userInput.isNotBlank()) {
+                    val userInput = inputField.text.toString().toIntOrNull()
+                    if (userInput in 1..7) {
+                        // Save the goal
+                        val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                        prefs.edit().putInt(WEEKLY_GOAL_KEY, userInput).apply()
+
+                        // Update display
                         weeklyGoalText.text = "Weekly Goal: $userInput"
+                    } else {
+                        Toast.makeText(this, "Please enter a number from 1 to 7", Toast.LENGTH_SHORT).show()
                     }
                 }
                 .setNegativeButton("Cancel", null)
