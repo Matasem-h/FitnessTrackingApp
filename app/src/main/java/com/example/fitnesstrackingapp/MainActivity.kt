@@ -111,11 +111,12 @@ class MainActivity : AppCompatActivity() {
         val squareContainer = findViewById<LinearLayout>(R.id.calendar_square_container)
         val db = data.DatabaseProvider.getDatabase(applicationContext)
         val today = LocalDate.now()
+        val startOfWeek = today.with(org.threeten.bp.DayOfWeek.MONDAY)
+
 
         CoroutineScope(Dispatchers.IO).launch {
             val entries = db.exerciseDao().getAllExercises()
             val dateGrouped = entries.groupBy { it.date }
-            val startOfWeek = today.with(org.threeten.bp.DayOfWeek.MONDAY)
 
             withContext(Dispatchers.Main) {
                 for (i in 0..6) {
