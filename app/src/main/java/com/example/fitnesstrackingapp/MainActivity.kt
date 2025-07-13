@@ -15,15 +15,9 @@ import com.google.android.material.navigation.NavigationView
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 
-import com.example.fitnesstrackingapp.DataInputActivity
-import com.example.fitnesstrackingapp.ProgressViewActivity
-import com.example.fitnesstrackingapp.SettingsActivity
-
 import android.view.Gravity
 import android.widget.LinearLayout
 import org.threeten.bp.LocalDate
-import android.util.TypedValue
-import android.graphics.Color
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -88,8 +82,7 @@ class MainActivity : AppCompatActivity() {
             weeklyGoalText.text = "Weekly Goal: $savedGoal"
         }
 
-
-        // Edit Goal Button Setup
+        // "Set Weekly Goal" button setup
         editGoalButton.setOnClickListener {
             val inputField = EditText(this)
             inputField.hint = "Enter a number from 1 to 7"
@@ -103,7 +96,7 @@ class MainActivity : AppCompatActivity() {
                         if (it in 1..7) {
                             val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
                             prefs.edit().putInt(WEEKLY_GOAL_KEY, it).apply()
-                            weeklyGoalText.text = "Weekly Goal: $it"
+                            weeklyGoalText.text = "Weekly Goal: $it times per week"
                         } else {
                             Toast.makeText(this, "Please enter a number from 1 to 7", Toast.LENGTH_SHORT).show()
                         }
@@ -122,10 +115,11 @@ class MainActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             val entries = db.exerciseDao().getAllExercises()
             val dateGrouped = entries.groupBy { it.date }
+            val startOfWeek = today.with(org.threeten.bp.DayOfWeek.MONDAY)
 
             withContext(Dispatchers.Main) {
-                for (i in 6 downTo 0) {
-                    val date = today.minusDays(i.toLong())
+                for (i in 0..6) {
+                    val date = startOfWeek.plusDays(i.toLong())
                     val dateStr = date.toString()
                     val day = date.dayOfMonth
 
