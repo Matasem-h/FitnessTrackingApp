@@ -135,6 +135,19 @@ class ProgressViewActivity : AppCompatActivity() {
                 current = current.plusDays(1)
             }
 
+            // Fill remaining days in the last week with empty placeholders
+            val remaining = 7 - weekLayout.childCount + 1
+            for (j in 1..remaining ) {
+                val placeholder = TextView(this).apply{
+                    layoutParams = LinearLayout.LayoutParams(0, 48).apply {
+                        weight = 1f
+                        setMargins(4, 4, 4, 4)
+                    }
+                    setBackgroundColor(Color.TRANSPARENT)
+                }
+                weekLayout.addView(placeholder)
+            }
+
             container.addView(weekLayout)
         }
 
