@@ -75,7 +75,6 @@ class ProgressViewActivity : AppCompatActivity() {
         }
 
         // Page-Specific Code
-
         // Loop for generating squares with date IDs
         val container = findViewById<LinearLayout>(R.id.week_grid_container)
         val today = LocalDate.now()
