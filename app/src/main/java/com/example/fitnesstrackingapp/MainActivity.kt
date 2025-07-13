@@ -20,10 +20,10 @@ import com.example.fitnesstrackingapp.ProgressViewActivity
 import com.example.fitnesstrackingapp.SettingsActivity
 
 import android.view.Gravity
-import android.util.TypedValue
-import android.graphics.Color
 import android.widget.LinearLayout
 import org.threeten.bp.LocalDate
+import android.util.TypedValue
+import android.graphics.Color
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -136,7 +136,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        
+
         // Show more button functionality
         val showMoreButton = findViewById<Button>(R.id.show_more_button)
         showMoreButton.setOnClickListener {

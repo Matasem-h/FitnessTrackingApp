@@ -60,7 +60,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/top_toolbar" />
 
-        <!-- New Goal Display Rectangle -->
+        <!-- Weekly Goal Display Rectangle -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/goal_box"
             android:layout_width="0dp"
@@ -72,34 +72,46 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/goal_label">
-
             <TextView
                 android:id="@+id/weekly_goal_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="48dp"
+                android:layout_marginStart="25dp"
                 android:fontFamily="sans-serif"
                 android:text="Weekly Goal: "
                 android:textColor="@android:color/black"
-                android:textSize="13sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <!-- Progress Display Rectangle       -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/progress_box"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="25dp"
+            android:background="@color/goal_box"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/goal_box">
             <TextView
-                android:id="@+id/goal_text"
+                android:id="@+id/progress_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="48dp"
+                android:layout_marginStart="25dp"
                 android:fontFamily="sans-serif"
                 android:text="Progress: "
                 android:textColor="@android:color/black"
-                android:textSize="13sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- Button: Edit Goal -->
@@ -111,7 +123,7 @@
             android:layout_marginEnd="25dp"
             android:backgroundTint="@color/edit_goal_button"
             android:fontFamily="sans-serif-medium"
-            android:text="Edit Goal"
+            android:text="Set Weekly Goal"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
