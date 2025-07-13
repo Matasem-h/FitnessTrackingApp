@@ -151,10 +151,12 @@ class ProgressViewActivity : AppCompatActivity() {
 
                     val square = container.findViewWithTag<TextView>("square_${dateStr.replace("-","_")}")
                     square?.let {
-                        val count = list.size
+                        val totalAmount = list.sumOf {
+                            it.durationOrSets.toIntOrNull() ?:0
+                        }
                         val colorRes = when {
-                            count >= 15 -> R.color.goal_box_high
-                            count >= 10 -> R.color.goal_box_medium
+                            totalAmount >= 15 -> R.color.goal_box_high
+                            totalAmount >= 10 -> R.color.goal_box_medium
                             else -> R.color.goal_box_light
                         }
                         square.setBackgroundColor(ContextCompat.getColor(this@ProgressViewActivity, colorRes))
