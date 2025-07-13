@@ -25,6 +25,11 @@ import android.graphics.Color
 import android.widget.LinearLayout
 import org.threeten.bp.LocalDate
 
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+
 class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
@@ -92,44 +97,67 @@ class MainActivity : AppCompatActivity() {
                 .show()
         }
 
-        // Calendar past 7 days
-        val calendarRow = findViewById<LinearLayout>(R.id.homepage_calendar_days)
+        // Past 7 days
+        val squareContainer = findViewById<LinearLayout>(R.id.calendar_square_container)
+        val db = data.DatabaseProvider.getDatabase(applicationContext)
         val today = LocalDate.now()
 
-        fun getDaySuffix (day: Int): String {
-            return when{
-                day in 11..13 -> "${day}th"
-                day % 10 == 1 -> "${day}st"
-                day % 10 == 2 -> "${day}nd"
-                day % 10 == 3 -> "${day}rd"
-                else -> "${day}th"
-            }
-        }
+        CoroutineScope(Dispatchers.IO).launch {
+            val entries = db.exerciseDao().getAllExercises()
+            val dateGrouped = entries.groupBy { it.date }
 
-        for (i in 6 downTo 0) {
-            val date = today.minusDays(i.toLong())
-            val textView = TextView(this).apply {
-                layoutParams = LinearLayout.LayoutParams(0, 48).apply {
-                    weight = 1f
-                    setMargins(4, 4, 4, 4)
+            withContext(Dispatchers.Main) {
+                for (i in 6 downTo 0) {
+                    val date = today.minusDays(i.toLong())
+                    val dateStr = date.toString()
+                    val day = date.dayOfMonth
+
+                    val totalAmount = dateGrouped[dateStr]?.sumOf {
+                        getWeightedValue(it)
+                    } ?: 0
+
+                    val colorRes = when {
+                        totalAmount >= 15 -> R.color.goal_box_high
+                        totalAmount >= 10 -> R.color.goal_box_medium
+                        totalAmount > 0 -> R.color.goal_box_light
+                        else -> android.R.color.darker_gray
+                    }
+
+                    val square = TextView(this@MainActivity).apply {
+                        layoutParams = LinearLayout.LayoutParams(0, 48, 1f).apply {
+                            setMargins(4, 4, 4, 4)
+                        }
+                        gravity = Gravity.CENTER
+                        text = getDaySuffix(day)
+                        setBackgroundColor(ContextCompat.getColor(this@MainActivity, colorRes))
+                    }
+
+                    squareContainer.addView(square)
                 }
-                gravity = Gravity.CENTER
-                text = getDaySuffix(date.dayOfMonth)
-                setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
-                setBackgroundColor(Color.LTGRAY)
             }
-            calendarRow.addView(textView)
         }
 
+    }
+    // Simple logic for day coloring
+    private fun getWeightedValue(entry: data.ExerciseEntry): Int {
+        val base = entry.durationOrSets.toIntOrNull() ?: 0
+        return when (entry.name.lowercase()) {
+            "push-ups", "sit-ups" -> base * 1         // Reps
+            "walking", "cycling" -> base / 5          // Minutes
+            "swimming" -> base / 5                     // Swimming is more intense
+            else -> base
+        }
+    }
 
-
-
-
-
-
-
-
-
+    // Days as dates
+    private fun getDaySuffix(day: Int): String {
+        return when {
+            day in 11..13 -> "${day}th"
+            day % 10 == 1 -> "${day}st"
+            day % 10 == 2 -> "${day}nd"
+            day % 10 == 3 -> "${day}rd"
+            else -> "${day}th"
+        }
     }
 
     // Enable navigation icon response to clicks
