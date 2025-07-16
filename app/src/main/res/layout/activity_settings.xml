@@ -43,6 +43,18 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <!-- Page-specific code -->
+        <TextView
+            android:id="@+id/reset_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="This will delete all your entered exercise data. This action cannot be undone."
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:padding="16sp"
+            android:fontFamily="sans-serif-medium"
+            app:layout_constraintTop_toBottomOf="@id/top_toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
 
 
