@@ -23,6 +23,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
     // Navigation button variables
@@ -112,6 +113,7 @@ class MainActivity : AppCompatActivity() {
         val db = data.DatabaseProvider.getDatabase(applicationContext)
         val today = LocalDate.now()
         val startOfWeek = today.with(org.threeten.bp.DayOfWeek.MONDAY)
+        val endOfWeek = startOfWeek.plusDays(6)
 
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -146,6 +148,30 @@ class MainActivity : AppCompatActivity() {
 
                     squareContainer.addView(square)
                 }
+                // Updating progress
+
+
+                val uniqueDaysThisWeek = entries
+                    .filter {
+                        val entryDate = LocalDate.parse(it.date)
+                        entryDate in startOfWeek..endOfWeek
+                    }
+                    .map { it.date }
+                    .distinct()
+                    .size
+
+
+
+
+                val savedGoal = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).getInt(WEEKLY_GOAL_KEY, 0)
+                val progressText = findViewById<TextView>(R.id.progress_text)
+
+                val displayText = if (savedGoal in 1..7){
+                    "Progress: $uniqueDaysThisWeek / $savedGoal days this week"
+                } else {
+                    "Progress: $uniqueDaysThisWeek days this week"
+                }
+                progressText.text = displayText
             }
         }
 
