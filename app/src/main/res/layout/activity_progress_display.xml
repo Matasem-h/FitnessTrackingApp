@@ -42,7 +42,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Add page-specific content below here -->
+        <!-- Page-specific code -->
         <TextView
             android:id="@+id/history_grid_title"
             android:layout_width="wrap_content"

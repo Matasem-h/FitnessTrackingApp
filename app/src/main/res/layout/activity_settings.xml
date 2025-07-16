@@ -42,7 +42,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Add page-specific content below here -->
+        <!-- Page-specific code -->
 
 
 

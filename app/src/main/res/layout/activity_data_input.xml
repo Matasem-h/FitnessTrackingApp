@@ -42,7 +42,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Page-specific content below here -->
+        <!-- Page-specific code -->
         <!-- Label: Exercise Name -->
         <TextView
             android:id="@+id/exercise_label"
