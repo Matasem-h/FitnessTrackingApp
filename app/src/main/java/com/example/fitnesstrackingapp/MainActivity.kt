@@ -148,24 +148,20 @@ class MainActivity : AppCompatActivity() {
 
                     squareContainer.addView(square)
                 }
-                // Updating progress
-
-
+                // Updating progress based on weekly goal
                 val uniqueDaysThisWeek = entries
-                    .filter {
-                        val entryDate = LocalDate.parse(it.date)
-                        entryDate in startOfWeek..endOfWeek
+                    .mapNotNull {
+                        try {
+                            LocalDate.parse(it.date)
+                        } catch (e: Exception) {
+                            null
+                        }
                     }
-                    .map { it.date }
-                    .distinct()
+                    . filter { it in startOfWeek..endOfWeek }
+                    .distinctBy { it }
                     .size
 
-
-
-
-                val savedGoal = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).getInt(WEEKLY_GOAL_KEY, 0)
                 val progressText = findViewById<TextView>(R.id.progress_text)
-
                 val displayText = if (savedGoal in 1..7){
                     "Progress: $uniqueDaysThisWeek / $savedGoal days this week"
                 } else {
