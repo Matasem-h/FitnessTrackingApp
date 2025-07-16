@@ -8,13 +8,27 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import android.view.MenuItem
 
+import android.widget.Button
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.util.*
+import kotlinx.coroutines.withContext
+
+
 import android.widget.AutoCompleteTextView
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.app.DatePickerDialog
-import android.widget.Button
-import android.widget.Toast
-import java.util.*
+
+import java.util.Date
+
+import data.DatabaseProvider
+import data.ExerciseEntry
+
+
 
 class SettingsActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
@@ -60,6 +74,26 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         // Page-Specific Code
+        val resetButton = findViewById<Button>(R.id.reset_button)
+
+        resetButton.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("Reset Progress")
+                .setMessage("Are you sure you want to reset all your progress?")
+                .setPositiveButton("Yes") {_, _ ->
+                    CoroutineScope(Dispatchers.IO).launch {
+                        val db = data.DatabaseProvider.getDatabase(applicationContext)
+                        db.exerciseDao().deleteAll()
+
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(this@SettingsActivity, "All progress has been reset.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+                .setNegativeButton("No", null)
+                .show()
+        }
+
 
 
 
