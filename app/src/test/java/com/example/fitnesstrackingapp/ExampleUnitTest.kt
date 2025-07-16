@@ -5,6 +5,7 @@ import org.junit.Test
 
 class ExerciseUtilsTest {
 
+    // 3 Unit Tests!
     @Test
     fun testPushUpsWeightedValue() {
         val entry = ExerciseEntry(name = "push-ups", durationOrSets = "10", date = "2025-07-16")
