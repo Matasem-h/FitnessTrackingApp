@@ -1,17 +1,28 @@
-package com.example.fitnesstrackingapp
-
+import data.ExerciseEntry
+import data.ExerciseUtils
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
-import org.junit.Assert.*
+class ExerciseUtilsTest {
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
-class ExampleUnitTest {
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun testPushUpsWeightedValue() {
+        val entry = ExerciseEntry("push-ups", "10", "2025-07-16")
+        val result = ExerciseUtils.getWeightedValue(entry)
+        assertEquals(10, result)
+    }
+
+    @Test
+    fun testWalkingWeightedValue() {
+        val entry = ExerciseEntry("walking", "25", "2025-07-16")
+        val result = ExerciseUtils.getWeightedValue(entry)
+        assertEquals(5, result)
+    }
+
+    @Test
+    fun testInvalidDuration() {
+        val entry = ExerciseEntry("cycling", "abc", "2025-07-16")
+        val result = ExerciseUtils.getWeightedValue(entry)
+        assertEquals(0, result)
     }
 }

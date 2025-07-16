@@ -17,12 +17,14 @@ import androidx.core.view.WindowCompat
 
 import android.view.Gravity
 import android.widget.LinearLayout
+import data.ExerciseUtils
 import org.threeten.bp.LocalDate
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+
 import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
@@ -127,7 +129,7 @@ class MainActivity : AppCompatActivity() {
                     val day = date.dayOfMonth
 
                     val totalAmount = dateGrouped[dateStr]?.sumOf {
-                        getWeightedValue(it)
+                        ExerciseUtils.getWeightedValue(it)
                     } ?: 0
 
                     val colorRes = when {
@@ -175,16 +177,6 @@ class MainActivity : AppCompatActivity() {
         val showMoreButton = findViewById<Button>(R.id.show_more_button)
         showMoreButton.setOnClickListener {
             startActivity(Intent(this, ProgressViewActivity::class.java))
-        }
-    }
-    // Simple logic for day coloring
-    private fun getWeightedValue(entry: data.ExerciseEntry): Int {
-        val base = entry.durationOrSets.toIntOrNull() ?: 0
-        return when (entry.name.lowercase()) {
-            "push-ups", "sit-ups" -> base * 1         // Reps
-            "walking", "cycling" -> base / 5          // Minutes
-            "swimming" -> base / 5                     // Swimming is more intense
-            else -> base
         }
     }
 
