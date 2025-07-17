@@ -103,7 +103,8 @@ class DataInputActivity : AppCompatActivity() {
             val date = dateInput.text.toString()
 
             if (exercise.isNotBlank() && duration.isNotBlank() && date.isNotBlank()) {
-                // Save the data below here
+
+                // This is used to save the exercise data that the user inputs
                 val entry = ExerciseEntry(name = exercise, durationOrSets = duration, date = date)
 
                 CoroutineScope(Dispatchers.IO).launch {
