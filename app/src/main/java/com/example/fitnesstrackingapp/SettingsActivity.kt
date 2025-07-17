@@ -74,6 +74,7 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         // Page-Specific Code
+        // In SettingsActivity.kt: Reset button functionality
         val resetButton = findViewById<Button>(R.id.reset_button)
 
         resetButton.setOnClickListener {
@@ -82,10 +83,12 @@ class SettingsActivity : AppCompatActivity() {
                 .setMessage("Are you sure you want to reset all your progress?")
                 .setPositiveButton("Yes") {_, _ ->
                     CoroutineScope(Dispatchers.IO).launch {
+                        // Access the database and delete all exercise entries
                         val db = data.DatabaseProvider.getDatabase(applicationContext)
                         db.exerciseDao().deleteAll()
 
                         withContext(Dispatchers.Main) {
+                            // Notify the user that all exercise data has been deleted
                             Toast.makeText(this@SettingsActivity, "All progress has been reset.", Toast.LENGTH_SHORT).show()
                         }
                     }
