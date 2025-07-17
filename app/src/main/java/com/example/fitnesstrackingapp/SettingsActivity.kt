@@ -74,7 +74,7 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         // Page-Specific Code
-        // In SettingsActivity.kt: Reset button functionality
+        // Reset button functionality
         val resetButton = findViewById<Button>(R.id.reset_button)
 
         resetButton.setOnClickListener {

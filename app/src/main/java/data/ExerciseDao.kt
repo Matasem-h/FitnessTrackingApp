@@ -16,6 +16,7 @@ interface ExerciseDao {
     @Query("SELECT * FROM exercise_entries")
     suspend fun getAllExercises(): List<ExerciseEntry>
 
+    // DAO method for clearing all exercise entries
     @Query("DELETE FROM EXERCISE_ENTRIES")
     suspend fun deleteAll()
 }
