@@ -14,12 +14,10 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
-
 import android.view.Gravity
 import android.widget.LinearLayout
 import data.ExerciseUtils
 import org.threeten.bp.LocalDate
-
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -40,8 +38,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // Setup toolbar with no default title
         setSupportActionBar(findViewById(R.id.top_toolbar))
         supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        // Attempt to fix status bar color
         WindowCompat.setDecorFitsSystemWindows(window, true)
         window.statusBarColor= ContextCompat.getColor(this, R.color.top_toolbar)
 
@@ -54,9 +56,9 @@ class MainActivity : AppCompatActivity() {
         )
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
-
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        // Navigation drawer items
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_home -> {
@@ -81,6 +83,8 @@ class MainActivity : AppCompatActivity() {
         val editGoalButton = findViewById<Button>(R.id.edit_goal_button)
         val weeklyGoalText = findViewById<TextView>(R.id.weekly_goal_text)
         val savedGoal = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).getInt(WEEKLY_GOAL_KEY, 0)
+
+        // Load saved weekly goal if valid
         if (savedGoal in 1..7){
             weeklyGoalText.text = "Weekly Goal: $savedGoal"
         }
@@ -110,7 +114,7 @@ class MainActivity : AppCompatActivity() {
                 .show()
         }
 
-        // Past 7 days
+        // Current Week on Homepage
         val squareContainer = findViewById<LinearLayout>(R.id.calendar_square_container)
         val db = data.DatabaseProvider.getDatabase(applicationContext)
         val today = LocalDate.now()
@@ -132,6 +136,7 @@ class MainActivity : AppCompatActivity() {
                         ExerciseUtils.getWeightedValue(it)
                     } ?: 0
 
+                    // Select color intensity based on value
                     val colorRes = when {
                         totalAmount >= 15 -> R.color.goal_box_high
                         totalAmount >= 10 -> R.color.goal_box_medium
@@ -139,6 +144,7 @@ class MainActivity : AppCompatActivity() {
                         else -> android.R.color.darker_gray
                     }
 
+                    // Create daily calendar square
                     val square = TextView(this@MainActivity).apply {
                         layoutParams = LinearLayout.LayoutParams(0, 48, 1f).apply {
                             setMargins(4, 4, 4, 4)
@@ -150,7 +156,8 @@ class MainActivity : AppCompatActivity() {
 
                     squareContainer.addView(square)
                 }
-                // Updating progress based on weekly goal
+
+                // Updating progress based on active days
                 val uniqueDaysThisWeek = entries
                     .mapNotNull {
                         try {
@@ -163,6 +170,7 @@ class MainActivity : AppCompatActivity() {
                     .distinctBy { it }
                     .size
 
+                // Show progress vs goal
                 val progressText = findViewById<TextView>(R.id.progress_text)
                 val displayText = if (savedGoal in 1..7){
                     "Progress: $uniqueDaysThisWeek / $savedGoal days this week"
@@ -180,7 +188,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // Days as dates
+    // Convert day numbers to dates (e.g. 1st, 2nd, 3rd)
     private fun getDaySuffix(day: Int): String {
         return when {
             day in 11..13 -> "${day}th"
