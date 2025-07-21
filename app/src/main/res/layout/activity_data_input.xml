@@ -9,7 +9,7 @@
     android:fitsSystemWindows="true"
     tools:context=".DataInputActivity">
 
-    <!-- Main code -->
+    <!-- Main content area -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_layout"
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <!-- Centered Title -->
+        <!-- Top Toolbar Centered Title -->
         <TextView
             android:id="@+id/top_toolbar_title"
             android:layout_width="wrap_content"
@@ -143,6 +143,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
+        <!-- Submit Button -->
         <Button
             android:id="@+id/submit_button"
             android:layout_width="0dp"
@@ -158,6 +159,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
+        <!-- Exercise History Button (Transitions to Progress View page)-->
         <Button
             android:id="@+id/exercise_history_button"
             android:layout_width="0dp"
