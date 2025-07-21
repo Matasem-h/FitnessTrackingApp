@@ -10,7 +10,6 @@
     tools:context=".MainActivity">
 
     <!-- Main content -->
-
     <!-- Navigation View -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_layout"
@@ -30,7 +29,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Centered Title -->
+        <!-- Top Toolbar Centered Title -->
         <TextView
             android:id="@+id/top_toolbar_title"
             android:layout_width="wrap_content"
@@ -72,6 +71,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/goal_label">
+            <!-- Weekly Goal Text -->
             <TextView
                 android:id="@+id/weekly_goal_text"
                 android:layout_width="wrap_content"
@@ -99,6 +99,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/goal_box">
+            <!-- Progress Text -->
             <TextView
                 android:id="@+id/progress_text"
                 android:layout_width="wrap_content"
@@ -140,7 +141,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Centered Calendar -->
+        <!-- Bottom Toolbar Centered Title -->
         <TextView
             android:id="@+id/Calendar"
             android:layout_width="wrap_content"
@@ -170,6 +171,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/bottom_toolbar" />
 
+        <!-- Horizontal layout for calendar squares -->
         <LinearLayout
             android:id="@+id/calendar_square_container"
             android:layout_width="0dp"
@@ -182,6 +184,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
+        <!-- Button: Show more (Transition to Progress View page)-->
         <Button
             android:id="@+id/show_more_button"
             android:layout_width="wrap_content"
