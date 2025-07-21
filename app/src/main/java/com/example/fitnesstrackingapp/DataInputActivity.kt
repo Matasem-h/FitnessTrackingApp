@@ -46,7 +46,7 @@ class DataInputActivity : AppCompatActivity() {
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        // Placing the navigation button on the action bar
+        // Placing the navigation button on the top-left action bar
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // Navigation button functionality
@@ -102,9 +102,10 @@ class DataInputActivity : AppCompatActivity() {
             val duration = findViewById<EditText>(R.id.duration_input).text.toString()
             val date = dateInput.text.toString()
 
+            // Verify that all fields are filled
             if (exercise.isNotBlank() && duration.isNotBlank() && date.isNotBlank()) {
 
-                // This is used to save the exercise data that the user inputs
+                // Create exercise entry and insert into database
                 val entry = ExerciseEntry(name = exercise, durationOrSets = duration, date = date)
 
                 CoroutineScope(Dispatchers.IO).launch {
@@ -112,7 +113,7 @@ class DataInputActivity : AppCompatActivity() {
                     db.exerciseDao().insertExercise(entry) // Changes color of day square
                 }
 
-                // Show "Toast" meaning confirmation message on UI when submit button is pressed
+                // Show confirmation message when submit button is pressed
                 Toast.makeText(this, "Exercise Saved!", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
