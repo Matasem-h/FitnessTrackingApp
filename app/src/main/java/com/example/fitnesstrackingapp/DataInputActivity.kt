@@ -14,15 +14,11 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
-import java.time.Year
-
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-
 import data.DatabaseProvider
 import data.ExerciseEntry
-import kotlinx.coroutines.withContext
 
 class DataInputActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout

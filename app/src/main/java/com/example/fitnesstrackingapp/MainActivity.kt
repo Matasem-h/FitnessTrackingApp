@@ -23,8 +23,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-import org.w3c.dom.Text
-
 class MainActivity : AppCompatActivity() {
     // Navigation button variables
     private lateinit var drawerLayout: DrawerLayout
