@@ -74,9 +74,19 @@ class SettingsActivity : AppCompatActivity() {
                         val db = data.DatabaseProvider.getDatabase(applicationContext)
                         db.exerciseDao().deleteAll() // Delete all entries
 
+                        // Reset Weekly Goal
+                        val sharedPrefs = getSharedPreferences("FitnessAppsPrefs", MODE_PRIVATE)
+                        sharedPrefs.edit().clear().apply()
+
                         withContext(Dispatchers.Main) {
                             // Notify the user that all exercise data has been deleted
                             Toast.makeText(this@SettingsActivity, "All progress has been reset.", Toast.LENGTH_SHORT).show()
+
+                            // Restart app to reflect reset changes
+                            val intent = Intent(this@SettingsActivity, MainActivity::class.java)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                            startActivity(intent)
+                            finishAffinity()
                         }
                     }
                 }
