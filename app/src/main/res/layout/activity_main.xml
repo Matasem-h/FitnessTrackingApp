@@ -9,7 +9,7 @@
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
-    <!-- Main content -->
+    <!-- Main content area -->
     <!-- Navigation View -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_layout"

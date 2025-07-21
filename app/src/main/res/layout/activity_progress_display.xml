@@ -9,7 +9,7 @@
     android:fitsSystemWindows="true"
     tools:context=".ProgressViewActivity">
 
-    <!-- Main code -->
+    <!-- Main content area -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_layout"
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <!-- Centered Title -->
+        <!-- Top Toolbar Centered Title -->
         <TextView
             android:id="@+id/top_toolbar_title"
             android:layout_width="wrap_content"
@@ -43,6 +43,7 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <!-- Page-specific code -->
+        <!-- Grid Label -->
         <TextView
             android:id="@+id/history_grid_title"
             android:layout_width="wrap_content"
@@ -57,7 +58,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <!-- Week Grid Container -->
+        <!-- Grid Container -->
         <LinearLayout
             android:id="@+id/week_grid_container"
             android:layout_width="match_parent"
@@ -71,7 +72,7 @@
             app:layout_constraintEnd_toEndOf="parent">
         </LinearLayout>
 
-        <!-- Legend Row -->
+        <!-- Legend Row for Grid Colors -->
         <LinearLayout
             android:id="@+id/legend_row"
             android:layout_width="wrap_content"
@@ -84,6 +85,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:gravity="center">
 
+            <!-- Low intensity color -->
             <TextView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
@@ -97,6 +99,7 @@
                 android:textColor="@android:color/black"
                 android:layout_marginEnd="16dp" />
 
+            <!-- Medium intensity color -->
             <TextView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
@@ -110,6 +113,7 @@
                 android:textColor="@android:color/black"
                 android:layout_marginEnd="16dp" />
 
+            <!-- High intensity color -->
             <TextView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
