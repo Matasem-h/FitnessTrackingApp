@@ -22,11 +22,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.threeten.bp.LocalDate
 
-//import org.w3c.dom.Text
-//import org.w3c.dom.Text
-//import java.time.LocalDate
-
-
 class ProgressViewActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
@@ -75,14 +70,14 @@ class ProgressViewActivity : AppCompatActivity() {
         }
 
         // Page-Specific Code
-        // Loop for generating squares with date IDs
+        // Build history grid from June 1st to today
         val container = findViewById<LinearLayout>(R.id.week_grid_container)
         val today = LocalDate.now()
         val startDate = LocalDate.of(today.year, 6, 1)
         var current = startDate
-
         var currentMonth = ""
 
+        // Converts days from numbers to dates
         fun getDaySuffix(day: Int): String {
             return when {
                 day in 11..13 -> "${day}th"
@@ -93,8 +88,8 @@ class ProgressViewActivity : AppCompatActivity() {
             }
         }
 
+        // Loop to generate week rows with date squares
         while (!current.isAfter(today)) {
-            // Start new week row
             val weekLayout = LinearLayout(this).apply {
                 orientation = LinearLayout.HORIZONTAL
             }
@@ -109,6 +104,7 @@ class ProgressViewActivity : AppCompatActivity() {
             }
             weekLayout.addView(monthLabel)
 
+            // Add 7 days
             for (i in 0..6) {
                 if (current.isAfter(today)) break
 
@@ -123,6 +119,8 @@ class ProgressViewActivity : AppCompatActivity() {
                     setBackgroundColor(Color.LTGRAY)
                     id = View.generateViewId()
                     tag = squareId
+
+                    // Show date details upon clicking
                     val capturedDate = current
                     setOnClickListener {
                         Toast.makeText(this@ProgressViewActivity, "Selected date: $capturedDate", Toast.LENGTH_SHORT).show()
@@ -151,7 +149,7 @@ class ProgressViewActivity : AppCompatActivity() {
         }
 
 
-        // Coroutine part
+        // Coroutine part: load exercise entries and update square colors
         CoroutineScope(Dispatchers.IO).launch {
             val db = DatabaseProvider.getDatabase(applicationContext)
             val entries = db.exerciseDao().getAllExercises()
@@ -178,7 +176,7 @@ class ProgressViewActivity : AppCompatActivity() {
         }
     }
 
-    // Simple logic for day coloring
+    // Weighting logic for different exercise types
     private fun getWeightedValue(entry: data.ExerciseEntry): Int {
         val base = entry.durationOrSets.toIntOrNull() ?: 0
         return when (entry.name.lowercase()) {
