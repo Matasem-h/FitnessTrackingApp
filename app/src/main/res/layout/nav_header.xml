@@ -10,6 +10,7 @@
     android:paddingEnd="25dp"
     android:gravity="start|center_vertical">
 
+    <!-- Navigation drawer header text-->
     <TextView
         android:id="@+id/nav_header_text"
         android:layout_width="match_parent"
