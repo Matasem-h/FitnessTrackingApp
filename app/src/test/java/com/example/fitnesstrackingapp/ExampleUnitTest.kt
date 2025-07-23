@@ -32,7 +32,7 @@ class ExerciseUtilsTest {
         assertEquals(0, result)
     }
 
-    // Test 4: Unrecognized exercise returns raw base value
+    // Test 4: Verifies that an unrecognized exercise like skydiving returns the base value.
     @Test
     fun testUnrecognizedExerciseReturnsBase() {
         val entry = ExerciseEntry(name = "skydiving", durationOrSets = "12", date = "2025-07-16")
@@ -40,7 +40,7 @@ class ExerciseUtilsTest {
         assertEquals(12, result) // Falls into default: base = 12
     }
 
-    // Test 5: Cardio exercise with exact multiple of 5
+    // Test 5: Verifies that a cardio exercise like cycling is weighted correctly.
     @Test
     fun testCardioDivisibleByFive() {
         val entry = ExerciseEntry(name = "cycling", durationOrSets = "30", date = "2025-07-16")
@@ -48,7 +48,7 @@ class ExerciseUtilsTest {
         assertEquals(6, result) // 30 / 5
     }
 
-    // Test 6: Edge case - 0 duration
+    // Test 6: Verifies that zero duration input returns 0 for running.
     @Test
     fun testZeroDuration() {
         val entry = ExerciseEntry(name = "running", durationOrSets = "0", date = "2025-07-16")
@@ -56,7 +56,7 @@ class ExerciseUtilsTest {
         assertEquals(0, result)
     }
 
-    // Test 7: Very high duration
+    // Test 7: Verifies that a high-duration cardio exercise is weighted correctly.
     @Test
     fun testHighCardioDuration() {
         val entry = ExerciseEntry(name = "walking", durationOrSets = "120", date = "2025-07-16")
@@ -64,7 +64,7 @@ class ExerciseUtilsTest {
         assertEquals(24, result) // 120 / 5
     }
 
-    // Test 8: Strength exercise with negative value
+    // Test 8: Verifies that a negative input for sit-ups returns the negative value.
     @Test
     fun testNegativeValue() {
         val entry = ExerciseEntry(name = "Sit-Ups", durationOrSets = "-10", date = "2025-07-16")
@@ -72,7 +72,7 @@ class ExerciseUtilsTest {
         assertEquals(-10, result)
     }
 
-    // Test 9: Invalid decimal string returns 0
+    // Test 9: Verifies that a decimal input for running returns 0.
     @Test
     fun testDecimalInputReturnsZero() {
         val entry = ExerciseEntry(name = "running", durationOrSets = "15.5", date = "2025-07-16")
@@ -80,7 +80,7 @@ class ExerciseUtilsTest {
         assertEquals(0, result) // Invalid input is parsed as 0
     }
 
-    // Test 10: Verifies that a swimming exercise is weighted correctly
+    // Test 10: Verifies that a cardio exercise like swimming is weighted correctly.
     @Test
     fun testSwimmingWeightedValue() {
         val entry = ExerciseEntry(name = "swimming", durationOrSets = "20", date = "2025-07-16")
