@@ -1,7 +1,9 @@
 import data.ExerciseEntry
 import data.ExerciseUtils
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
+import org.threeten.bp.LocalDate
 
 class ExerciseUtilsTest {
 
@@ -78,4 +80,11 @@ class ExerciseUtilsTest {
         assertEquals(3, result) // 15.5 / 5 = 3.1 -> 3 (int)
     }
 
+    // Test 10: Date parsing utility or suffix logic (if exposed)
+    @Test
+    fun testDateIsCurrentWeek() {
+        val today = LocalDate.now()
+        val monday = today.with(org.threeten.bp.DayOfWeek.MONDAY)
+        assertTrue(today >= monday && today <= monday.plusDays(6))
+    }
 }
