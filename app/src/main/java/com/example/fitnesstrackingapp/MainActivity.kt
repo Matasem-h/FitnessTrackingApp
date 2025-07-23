@@ -168,7 +168,7 @@ class MainActivity : AppCompatActivity() {
                     .distinctBy { it }
                     .size
 
-                // Show progress vs goal
+                // Show progress vs weekly goal
                 val progressText = findViewById<TextView>(R.id.progress_text)
                 val displayText = if (savedGoal in 1..7){
                     "Progress: $uniqueDaysThisWeek / $savedGoal days this week"
