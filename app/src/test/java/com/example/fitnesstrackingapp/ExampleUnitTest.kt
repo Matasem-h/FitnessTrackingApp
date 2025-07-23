@@ -29,4 +29,6 @@ class ExerciseUtilsTest {
         val result = ExerciseUtils.getWeightedValue(entry)
         assertEquals(0, result)
     }
+
+    
 }
