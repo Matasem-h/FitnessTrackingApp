@@ -45,4 +45,12 @@ class ExerciseUtilsTest {
         val result = ExerciseUtils.getWeightedValue(entry)
         assertEquals(6, result) // 30 / 5
     }
+
+    // Test 6: Edge case - 0 duration
+    @Test
+    fun testZeroDuration() {
+        val entry = ExerciseEntry(name = "running", durationOrSets = "0", date = "2025-07-16")
+        val result = ExerciseUtils.getWeightedValue(entry)
+        assertEquals(0, result)
+    }
 }
