@@ -30,5 +30,12 @@ class ExerciseUtilsTest {
         assertEquals(0, result)
     }
 
+    // Test 4: Unknown exercise returns 0
+    @Test
+    fun testUnknownExerciseType() {
+        val entry = ExerciseEntry(name = "skydiving", durationOrSets = "10", date = "2025-07-16")
+        val result = ExerciseUtils.getWeightedValue(entry)
+        assertEquals(0, result)
+    }
     
 }
