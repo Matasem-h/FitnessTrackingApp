@@ -53,4 +53,13 @@ class ExerciseUtilsTest {
         val result = ExerciseUtils.getWeightedValue(entry)
         assertEquals(0, result)
     }
+
+    // Test 7: Very high duration
+    @Test
+    fun testHighCardioDuration() {
+        val entry = ExerciseEntry(name = "walking", durationOrSets = "120", date = "2025-07-16")
+        val result = ExerciseUtils.getWeightedValue(entry)
+        assertEquals(24, result) // 120 / 5
+    }
+
 }
