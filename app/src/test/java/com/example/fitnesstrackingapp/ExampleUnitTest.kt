@@ -37,5 +37,12 @@ class ExerciseUtilsTest {
         val result = ExerciseUtils.getWeightedValue(entry)
         assertEquals(0, result)
     }
-    
+
+    // Test 5: Cardio exercise with exact multiple of 5
+    @Test
+    fun testCardioDivisibleByFive() {
+        val entry = ExerciseEntry(name = "cycling", durationOrSets = "30", date = "2025-07-16")
+        val result = ExerciseUtils.getWeightedValue(entry)
+        assertEquals(6, result) // 30 / 5
+    }
 }
