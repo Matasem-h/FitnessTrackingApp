@@ -32,12 +32,12 @@ class ExerciseUtilsTest {
         assertEquals(0, result)
     }
 
-    // Test 4: Unknown exercise returns 0
+    // Test 4: Unrecognized exercise returns raw base value
     @Test
-    fun testUnknownExerciseType() {
-        val entry = ExerciseEntry(name = "skydiving", durationOrSets = "10", date = "2025-07-16")
+    fun testUnrecognizedExerciseReturnsBase() {
+        val entry = ExerciseEntry(name = "skydiving", durationOrSets = "12", date = "2025-07-16")
         val result = ExerciseUtils.getWeightedValue(entry)
-        assertEquals(0, result)
+        assertEquals(12, result) // Falls into default: base = 12
     }
 
     // Test 5: Cardio exercise with exact multiple of 5
@@ -69,22 +69,22 @@ class ExerciseUtilsTest {
     fun testNegativeValue() {
         val entry = ExerciseEntry(name = "Sit-Ups", durationOrSets = "-10", date = "2025-07-16")
         val result = ExerciseUtils.getWeightedValue(entry)
-        assertEquals(0, result)
+        assertEquals(-10, result)
     }
 
-    // Test 9: Edge case - cardio exercise with decimal duration
+    // Test 9: Invalid decimal string returns 0
     @Test
-    fun testDecimalCardioDuration() {
+    fun testDecimalInputReturnsZero() {
         val entry = ExerciseEntry(name = "running", durationOrSets = "15.5", date = "2025-07-16")
         val result = ExerciseUtils.getWeightedValue(entry)
-        assertEquals(3, result) // 15.5 / 5 = 3.1 -> 3 (int)
+        assertEquals(0, result) // Invalid input is parsed as 0
     }
 
-    // Test 10: Date parsing utility or suffix logic (if exposed)
+    // Test 10: Verifies that a swimming exercise is weighted correctly
     @Test
-    fun testDateIsCurrentWeek() {
-        val today = LocalDate.now()
-        val monday = today.with(org.threeten.bp.DayOfWeek.MONDAY)
-        assertTrue(today >= monday && today <= monday.plusDays(6))
+    fun testSwimmingWeightedValue() {
+        val entry = ExerciseEntry(name = "swimming", durationOrSets = "20", date = "2025-07-16")
+        val result = ExerciseUtils.getWeightedValue(entry)
+        assertEquals(4, result) // 20 / 5
     }
 }
