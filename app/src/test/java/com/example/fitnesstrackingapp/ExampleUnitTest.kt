@@ -70,4 +70,12 @@ class ExerciseUtilsTest {
         assertEquals(0, result)
     }
 
+    // Test 9: Edge case - cardio exercise with decimal duration
+    @Test
+    fun testDecimalCardioDuration() {
+        val entry = ExerciseEntry(name = "running", durationOrSets = "15.5", date = "2025-07-16")
+        val result = ExerciseUtils.getWeightedValue(entry)
+        assertEquals(3, result) // 15.5 / 5 = 3.1 -> 3 (int)
+    }
+
 }
