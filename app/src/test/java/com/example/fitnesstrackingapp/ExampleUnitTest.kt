@@ -62,4 +62,12 @@ class ExerciseUtilsTest {
         assertEquals(24, result) // 120 / 5
     }
 
+    // Test 8: Strength exercise with negative value
+    @Test
+    fun testNegativeValue() {
+        val entry = ExerciseEntry(name = "Sit-Ups", durationOrSets = "-10", date = "2025-07-16")
+        val result = ExerciseUtils.getWeightedValue(entry)
+        assertEquals(0, result)
+    }
+
 }
