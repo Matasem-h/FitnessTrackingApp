@@ -181,7 +181,7 @@ class ProgressViewActivity : AppCompatActivity() {
         val base = entry.durationOrSets.toIntOrNull() ?: 0
         return when (entry.name.lowercase()) {
             "push-ups", "sit-ups" -> base * 1           // Reps
-            "walking", "cycling" -> base / 5            // Less intents cardio
+            "walking", "cycling" -> base / 5            // Less intense cardio
             "swimming" -> base / 5                      // More intense cardio
             else -> base                                // Default
         }
